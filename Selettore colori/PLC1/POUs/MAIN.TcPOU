@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{63e7df63-7f3f-44d1-9324-af642dc6ce72}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+
+
+VAR
+	START : BOOL;
+	Q1 : BOOL;
+	Conteggio : INT;
+	I1 : BOOL;
+	STOP : BOOL;
+	Trig : R_TRIG;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF START = 1 AND STOP = 1 THEN
+	Q1 := TRUE;
+END_IF
+
+IF STOP = 0 THEN
+	Q1 := FALSE;
+END_IF
+
+Trig(CLK:=I1 , Q=>Q );
+
+IF I1 = 1 THEN
+	Conteggio := Conteggio+1;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="25" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="31" Count="2" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
