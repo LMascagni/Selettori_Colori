@@ -17,7 +17,32 @@
     <LibraryReferences>{2817345e-e237-4dc3-9324-3d5ee66cbb91}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CSL\Enums\E_CSL_Colors.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CLS_RawOut.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_In.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_Out.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_Params.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_RawIn.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GVLs\RawIO.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FC_Tensione.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -25,8 +50,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CSL\Enums" />
+    <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />
+    <Folder Include="CSL" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -44,11 +72,16 @@
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC1.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
@@ -69,13 +102,13 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>

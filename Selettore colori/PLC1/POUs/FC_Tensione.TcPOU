@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FC_Tensione" Id="{30edc409-ac68-4673-9909-159a51945f2c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FC_Tensione : REAL
+VAR_INPUT
+	I4 		: 	INT;
+	Vmin 	: 	REAL;
+	Vmax 	:	REAL;
+END_VAR
+	
+VAR
+	Rin	: REAL;
+END_VAR
+
+VAR CONSTANT
+	Livelli	:	REAL	:= 	32767.0;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Rin	:= INT_TO_REAL(I4);
+FC_Tensione	:=	Rin/Livelli*(Vmax-Vmin)/2.0;]]></ST>
+    </Implementation>
+    <LineIds Name="FC_Tensione">
+      <LineId Id="7" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

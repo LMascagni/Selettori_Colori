@@ -5,11 +5,8 @@
 
 
 VAR
-	START : BOOL;
-	Q1 : BOOL;
+	
 	Conteggio : INT;
-	I1 : BOOL;
-	STOP : BOOL;
 	Trig : R_TRIG;
 	
 END_VAR
@@ -24,7 +21,7 @@ IF STOP = 0 THEN
 	Q1 := FALSE;
 END_IF
 
-Trig(CLK:=I1 , Q=>Q );
+Trig(CLK:=I1 , Q=>Q1 );
 
 IF I1 = 1 THEN
 	Conteggio := Conteggio+1;
