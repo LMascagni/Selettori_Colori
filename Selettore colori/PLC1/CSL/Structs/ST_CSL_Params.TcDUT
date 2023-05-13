@@ -3,6 +3,18 @@
   <DUT Name="ST_CSL_Params" Id="{a68baf98-494b-42fa-ab52-3ff8b223671a}">
     <Declaration><![CDATA[TYPE ST_CSL_Params :
 STRUCT
+	StepSlot1			:	INT	:= 	123;
+	StepSlot2			:	INT	:= 	456;
+	StepSlot3			:	INT	:= 	789;
+	
+	ImpulsePerRotation	:	INT	:=	123;
+	
+	TYPE ST_Colors :
+		STRUCT
+			
+			
+		END_STRUCT
+	END_TYPE
 END_STRUCT
 END_TYPE
 ]]></Declaration>
