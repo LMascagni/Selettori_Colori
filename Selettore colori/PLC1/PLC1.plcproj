@@ -17,7 +17,10 @@
     <LibraryReferences>{2817345e-e237-4dc3-9324-3d5ee66cbb91}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CSL\Structs\ST_CLS_RawOut.TcDUT">
+    <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\Structs\ST_CSL_Colors.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CSL\Structs\ST_CSL_In.TcDUT">
@@ -32,11 +35,10 @@
     <Compile Include="CSL\Structs\ST_CSL_RawIn.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GVLs\RawIO.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FB_Filter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FC_Tensione.TcPOU">

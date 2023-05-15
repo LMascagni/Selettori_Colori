@@ -1433,7 +1433,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1442,7 +1442,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000006}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..5] OF BIT</Name>
 			<BitSize>6</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1487,7 +1487,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000003}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..2] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000003}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..2] OF BIT</Name>
 			<BitSize>3</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1496,7 +1496,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1505,7 +1505,7 @@ External Setpoint Generation:
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
 			<BitSize>2</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -1709,13 +1709,107 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{3EDF9352-52F3-4952-9761-FBBC22E56AED}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{07A4EEED-6B9E-5C93-06B4-42EAEA2B88F1}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{9A0B7A72-7D98-BC93-5B0F-36793A32B261}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
 						<Var>
-							<Name>RawIO.I1</Name>
+							<Name>MAIN.stRawIn.bMotorImpulse</Name>
+							<Comment><![CDATA[I1  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bPieceSensorInput</Name>
+							<Comment><![CDATA[I2  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bPieceSensorOutput</Name>
+							<Comment><![CDATA[I3  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bSlot1</Name>
+							<Comment><![CDATA[I5  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bSlot2</Name>
+							<Comment><![CDATA[I6  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bSlot3</Name>
+							<Comment><![CDATA[I7  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bStart</Name>
+							<Comment><![CDATA[I9  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bStop</Name>
+							<Comment><![CDATA[I10 (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bAck</Name>
+							<Comment><![CDATA[I11 (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.bEmerg</Name>
+							<Comment><![CDATA[12  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawIn.nColorSensor</Name>
+							<Comment><![CDATA[I4]]></Comment>
+							<Type>INT</Type>
+						</Var>
+					</Vars>
+					<Vars VarGrpType="2" AreaNo="1">
+						<Name>PlcTask Outputs</Name>
+						<Var>
+							<Name>MAIN.stRawOut.bMotor</Name>
+							<Comment><![CDATA[Q1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bCompressor</Name>
+							<Comment><![CDATA[Q2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bValveSlot1</Name>
+							<Comment><![CDATA[Q3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bValveSlot2</Name>
+							<Comment><![CDATA[Q4]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bValveSlot3</Name>
+							<Comment><![CDATA[Q5]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bLStart</Name>
+							<Comment><![CDATA[Q9 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bLStop</Name>
+							<Comment><![CDATA[Q10]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.stRawOut.bLAck</Name>
+							<Comment><![CDATA[Q11]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
@@ -4119,7 +4213,20 @@ Bit1: Value bigger/equal Limit2]]></Comment>
 		</OwnerA>
 		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 2 (EL1809)">
-				<Link VarA="PlcTask Inputs^RawIO.I1" VarB="Channel 1^Input"/>
+				<Link VarA="PlcTask Inputs^MAIN.stRawIn.bMotorImpulse" VarB="Channel 1^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 3 (EL2809)">
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bCompressor" VarB="Channel 2^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bLAck" VarB="Channel 11^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bLStart" VarB="Channel 9^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bLStop" VarB="Channel 10^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bMotor" VarB="Channel 1^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot1" VarB="Channel 3^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot2" VarB="Channel 4^Output"/>
+				<Link VarA="PlcTask Outputs^MAIN.stRawOut.bValveSlot3" VarB="Channel 5^Output"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 6 (EL3004)">
+				<Link VarA="PlcTask Inputs^MAIN.stRawIn.nColorSensor" VarB="AI Standard Channel 1^Value"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

@@ -9,12 +9,14 @@ STRUCT
 	
 	ImpulsePerRotation	:	INT	:=	123;
 	
-	TYPE ST_Colors :
-		STRUCT
-			
-			
-		END_STRUCT
-	END_TYPE
+	ST_CSL_Colors.aRed[0] := 123;
+	ST_CSL_Colors.aWhite[0] := 456;
+	ST_CSL_Colors.aBlue[0] := 789;
+	
+	ST_CSL_Colors.aRed[1] := 1;
+	ST_CSL_Colors.aWhite[1] := 1;
+	ST_CSL_Colors.aBlue[1] := 1;
+	
 END_STRUCT
 END_TYPE
 ]]></Declaration>
