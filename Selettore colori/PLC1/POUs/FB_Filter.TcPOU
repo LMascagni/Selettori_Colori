@@ -3,20 +3,27 @@
   <POU Name="FB_Filter" Id="{f84eb359-70db-4fa7-ad62-5d2e7ab4d13e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Filter
 VAR_INPUT
-	:=	rInRaw/Livelli*(Vmax-Vmin)/2.0;
+	VIn		:	REAL;
 END_VAR
-VAR_OUTPUT
-	
+VAR_IN_OUT
+	VOut	:	REAL;
 END_VAR
 VAR
-	
+	VPrev	:	REAL	:= 0;
+	tau		:	REAL	:= 50E-3;
+	Tc		:	REAL	:= 10E-3;
+	A		:	REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[A := tau/(tau + Tc);
+VOut  := A*VPrev+(1-A)*VIn;
+VPrev := Vout;]]></ST>
     </Implementation>
     <LineIds Name="FB_Filter">
+      <LineId Id="25" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
