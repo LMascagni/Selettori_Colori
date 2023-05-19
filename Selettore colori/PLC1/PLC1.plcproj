@@ -41,6 +41,9 @@
     <Compile Include="POUs\FB_Filter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FB_MSF_Pistoni.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FC_Tensione.TcPOU">
       <SubType>Code</SubType>
     </Compile>

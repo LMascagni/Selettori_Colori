@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_MSF_Pistoni" Id="{78e36ba8-cb60-4537-88b2-3ff9943f6860}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistoni
+VAR_INPUT
+ Slot : INT;
+END_VAR
+VAR_OUTPUT
+	Q3	:	BOOL;
+	Q4	:	BOOL;
+	Q5	:	BOOL;
+END_VAR
+VAR
+		Timer_Pistons : TON;
+		Slot1 :	ST_CSL_Params.StepSlot1;
+		Slot2 :	ST_CSL_Params.StepSlot2;
+		Slot3 :	ST_CSL_Params.StepSlot3;
+		
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Slot:= 1;
+Timer_Pistons(IN := Slot = 1,PT := T#500m,);
+
+IF Slot1 := 1 THEN
+	Q3 := TRUE;
+	Timer_Pistons;
+	IF Timer_Pistons = FALSE THEN
+		Q3 := FALSE;
+	END_IF
+END_IF
+
+IF Slot2 := 2 THEN
+	Q4 := TRUE;
+	Timer_Pistons;
+	IF Timer_Pistons = FALSE THEN
+		Q4 := FALSE;
+	END_IF
+END_IF
+
+IF Slot3 := 3 THEN
+	Q5 := TRUE;
+	Timer_Pistons;
+	IF Timer_Pistons = FALSE THEN
+		Q5 := FALSE;
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="FB_MSF_Pistoni">
+      <LineId Id="48" Count="12" />
+      <LineId Id="66" Count="2" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="61" Count="3" />
+      <LineId Id="70" Count="2" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="30" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
