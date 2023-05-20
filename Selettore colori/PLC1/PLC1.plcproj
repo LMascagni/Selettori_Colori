@@ -17,6 +17,18 @@
     <LibraryReferences>{2817345e-e237-4dc3-9324-3d5ee66cbb91}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CSL\Enums\E_Step.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_Filter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FB\FB_Sensor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CSL\FC\FC_Tensione.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -38,21 +50,14 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_Filter.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_Sensor.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FC_Tensione.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSL\Enums" />
+    <Folder Include="CSL\FB" />
+    <Folder Include="CSL\FC" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />

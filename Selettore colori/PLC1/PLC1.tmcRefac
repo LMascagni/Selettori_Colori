@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="6d3f40d7-f503-4f78-b3a8-51bf47e61ef9">DUT</Type>
+      <From>DUT</From>
+      <To>E_Step</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

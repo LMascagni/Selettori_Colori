@@ -3,16 +3,38 @@
   <POU Name="FB_Sensor" Id="{9fa85518-2ab9-47fc-a442-bf72b57e6579}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Sensor
 VAR_INPUT
+	bEnable				:	BOOL;
+	bStart				:	BOOL;
+	bStop				:	BOOL;
+	
+	bPieceSensorInput	:	BOOL;
+	bPieceSensorOutput	:	BOOL;
+	
+	//capire ingresso sensore: variabile momentanea Sensor (REAL)
+	rSensor				:	REAL;
+	
 END_VAR
+
 VAR_OUTPUT
+	eStep				:	E_Step;
+	eErrStep			:	E_Step;
+	nErrId				:	DINT;
+	tStepTime			:	TIME;
+	
+	bMotor				:	BOOL;
+	nSlot				:	INT;
 END_VAR
+
 VAR_IN_OUT
-	stColors : ST_CSL_Colors;
-	stIn : ST_CSL_In;
-	stOut : ST_CSL_Out;
-	stParams
+	
 END_VAR
+
 VAR
+	bInitialized		:	BOOL;
+	eNewStep			:	E_Step;
+	bEntryAct			:	BOOL;
+	fbTonStep			:	TON;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
