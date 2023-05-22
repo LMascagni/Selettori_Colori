@@ -13,12 +13,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(*
+      <ST><![CDATA[
 stRawOut.bMotor := stRawIn.bStart;
 stIn.nColorSensor := FC_Tensione(stRawIn.nColorSensor, -10.0, 10.0);
 
 Filter(VIn := stIn.nColorSensor, VOut := sensorFiltered);
-*)
+
 
 ]]></ST>
     </Implementation>

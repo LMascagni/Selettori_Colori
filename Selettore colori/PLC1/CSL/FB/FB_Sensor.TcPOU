@@ -10,7 +10,6 @@ VAR_INPUT
 	bPieceSensorInput	:	BOOL;
 	bPieceSensorOutput	:	BOOL;
 	
-	//capire ingresso sensore: variabile momentanea Sensor (REAL)
 	rSensor				:	REAL;
 	
 END_VAR
@@ -23,6 +22,10 @@ VAR_OUTPUT
 	
 	bMotor				:	BOOL;
 	nSlot				:	INT;
+	bLStop				:	BOOL;
+	bLStart				:	BOOL;
+	bLAck				:	BOOL;
+	
 END_VAR
 
 VAR_IN_OUT
@@ -33,15 +36,148 @@ VAR
 	bInitialized		:	BOOL;
 	eNewStep			:	E_Step;
 	bEntryAct			:	BOOL;
-	fbTonStep			:	TON;
+	fbTonStart			:	TON;
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[(*Initialization of the FB_Sensor*)
+IF NOT bInitialized THEN
+	eNewStep := E_Step.NoStep;
+	eStep := E_Step.Stop;
+	bEntryAct := FALSE;
+	bInitialized := TRUE;
+ELSE
+	
+	(*Preamble*)
+	
+	(*Forcing the Error State*)
+	IF NOT bEnable THEN
+		eNewStep := E_Step.NeOrError;
+	END_IF	
+	
+	(*State change management*)
+	IF eNewStep <> E_Step.NoStep THEN
+		eStep := eNewStep;
+		eNewStep := E_Step.NoStep;
+		bEntryact := FALSE;
+	END_IF
+	
+	(*Filters*)
+	fbTonStart(IN := bPieceSensorInput, PT := T#2S);
+	
+	
+	(*Case*)
+	CASE eStep OF
+		(*Start*)
+		E_Step.Start :
+			(*Body*)
+			bLStart	:= TRUE;
+			bLStop := FALSE;
+			bLAck := FALSE;
+			
+			bMotor := FALSE;
+		
+			(*Transition - to Measuring*)
+			IF fbTonStart.Q AND bEnable THEN
+				eNewStep := E_Step.Measuring;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+			
+		(*Measuring*)
+		E_Step.Measuring :
+			(*Body*)
+			bLStart	:= TRUE;
+			bLStop := FALSE;
+			bLAck := FALSE;
+			
+			bMotor := TRUE;
+		
+			(*Transition - to Measuring*)
+			IF fbTonStart.Q AND bEnable THEN
+				eNewStep := E_Step.Measuring;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+			(*Start*)
+		E_Step.Start :
+			(*Body*)
+			bLStart	:= TRUE;
+			bLStop := FALSE;
+			bLAck := FALSE;
+		
+			(*Transition - to Measuring*)
+			IF fbTonStart.Q AND bEnable THEN
+				eNewStep := E_Step.Measuring;
+			END_IF
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+	END_CASE
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_Sensor">
+      <LineId Id="59" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="76" Count="1" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="60" Count="2" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="95" Count="1" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="146" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="91" Count="3" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="99" Count="2" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="145" Count="0" />
+      <LineId Id="108" Count="5" />
+      <LineId Id="148" Count="1" />
+      <LineId Id="114" Count="11" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="127" Count="17" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="46" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

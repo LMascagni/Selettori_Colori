@@ -12,7 +12,9 @@ TYPE E_Step :
 	
 	Stop		:=	0,
 	
-	DaRinominare := 123, //Da rinominare
+	Start		:= 100,
+	Measuring	:= 110,
+	Processing	:= 120,
 	
 	Stopping	:=	900
 );
