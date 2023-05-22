@@ -6,6 +6,7 @@ STRUCT
 	StepSlot1			:	INT	:= 	123;
 	StepSlot2			:	INT	:= 	456;
 	StepSlot3			:	INT	:= 	789;
+	StepNoSlot			:	INT	:=	000;
 	
 	ImpulsePerRotation	:	INT	:=	123;
 	
