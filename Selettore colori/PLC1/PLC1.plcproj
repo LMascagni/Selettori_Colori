@@ -26,6 +26,9 @@
     <Compile Include="CSL\FB\FB_Measuring.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_Processing.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\FB\FB_Sensor.TcPOU">
       <SubType>Code</SubType>
     </Compile>

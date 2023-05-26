@@ -6,26 +6,41 @@ VAR_INPUT
 	VIn		:	REAL;
 END_VAR
 VAR_OUTPUT
+END_VAR
+VAR_IN_OUT
+	
 	VOut	:	REAL;
 END_VAR
 VAR
 	VPrev	:	REAL	:=	10.0;
-	stParams : ST_SCL_Params;
+	En : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//IF VIn <
+      <ST><![CDATA[
 IF VIn < VPrev THEN
 	VPrev := VIn;
+	En := TRUE;
 END_IF
-//IF VOut > ]]></ST>
+IF VIn > 7.5 THEN
+	Vprev := VIn;
+	En := FALSE;
+END_IF
+IF En = TRUE THEN
+	Vout:=VPrev;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_Measuring">
       <LineId Id="20" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="18" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="19" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="49" Count="2" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="56" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

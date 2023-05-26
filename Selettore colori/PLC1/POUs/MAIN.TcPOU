@@ -10,6 +10,8 @@ VAR
 	stIn	:	ST_CSL_In;
 	sensorFiltered : REAL;
 	Filter	:	FB_Filter;
+	Misura : FB_Measuring;
+	out: REAL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -19,7 +21,7 @@ stIn.nColorSensor := FC_Tensione(stRawIn.nColorSensor, -10.0, 10.0);
 
 Filter(VIn := stIn.nColorSensor, VOut := sensorFiltered);
 
-
+misura(Vin := sensorFiltered, Vout:= out);
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">

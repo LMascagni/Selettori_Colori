@@ -31,6 +31,12 @@
               <FileName></FileName>
               <Children />
             </Node>
+            <Node>
+              <Title>VOut</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
           </Children>
         </Node>
         <Node>
@@ -53,7 +59,7 @@
             </Node>
             <Node>
               <Title>Axis Group (1)</Title>
-              <Expanded>False</Expanded>
+              <Expanded>True</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
@@ -64,6 +70,12 @@
                 </Node>
                 <Node>
                   <Title>sensorFiltered</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+                <Node>
+                  <Title>VOut</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
