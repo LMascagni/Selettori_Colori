@@ -17,6 +17,9 @@
     <LibraryReferences>{2817345e-e237-4dc3-9324-3d5ee66cbb91}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CSL\Enums\E_Step.TcTLEO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>

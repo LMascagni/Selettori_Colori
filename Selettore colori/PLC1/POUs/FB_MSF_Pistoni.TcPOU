@@ -4,30 +4,45 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistoni
 VAR_INPUT
  Slot : INT;
- I5: BOOL;
- I6: BOOL;
- I7: BOOL;
+ bSlot1 : BOOL;
+ bSlot2 : BOOL;
+ bSlot3: BOOL;
  
 END_VAR
 VAR_OUTPUT
-	Q1  : 	BOOL;
-	Q3	:	BOOL;
-	Q4	:	BOOL;
-	Q5	:	BOOL;
+	bMotor 			:	BOOL;	//Q1
+	bValveSlot1 	:	BOOL;	//Q3
+	bValveSlot2 	:	BOOL;	//Q4
+	bValveSlot3		:	BOOL;	//Q5
+	
+	eStep	: BOOL;
+	eErrStep : E_Step;
+	nErrid	: DINT;
+	
+	
 	END_VAR
 VAR
 	bSensor: BOOL;
 	bValve : BOOL;
 	nStepSlot : INT;
 	Timer_Pistons : TON();
-		
+	Error: DINT;
+    nStep : ST_CSL_Params.ImpulsePerRotation;
+
+	bInitialized	: BOOL;
+	eNewStep : E_Step;
 		
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[CASE Slot OF
+      <ST><![CDATA[
+
+
+
+Timer_Pistons (IN:= Timer_Pistons.Q, PT := T#500MS);
+CASE Slot OF
 	0:
-		nStepSlot	:=	ST_CLS_Params.StepNoSlot;	
+		nStepSlot	:=	ST_CSL_Params.StepNoSlot;	
 	1:
 		bValve:= Q3;
 		bSensor := I5;
@@ -42,15 +57,17 @@ END_VAR
 		nStepSlot := ST_CSL_Params.StepSlot3;
 END_CASE
 
-IF <> nStepSlot THEN
-	bValve := TRUE;
-	Timer_Pistons.Q ( T#500MS);
-	bValve:= FALSE;
-	bSensor = TRUE;
-END_IF
-ELSE 
-	
+IF ST_CSL_Params.StepNoSlot <> nStepSlot THEN
 	Q1:= TRUE;
+	nStep;
+	bValve:=TRUE;
+	Timer_Pistons.Q;
+	bValve:= FALSE;
+	
+ELSE 
+	Q1:= TRUE;
+	bSenor:= FALSE AND Error := TRUE;
+	
 	
 END_IF
 
@@ -58,6 +75,8 @@ END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistoni">
+      <LineId Id="263" Count="3" />
+      <LineId Id="251" Count="0" />
       <LineId Id="181" Count="0" />
       <LineId Id="204" Count="0" />
       <LineId Id="206" Count="0" />
@@ -72,16 +91,17 @@ END_IF
       <LineId Id="186" Count="0" />
       <LineId Id="207" Count="0" />
       <LineId Id="148" Count="0" />
-      <LineId Id="208" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="257" Count="0" />
       <LineId Id="215" Count="0" />
-      <LineId Id="218" Count="0" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="209" Count="0" />
-      <LineId Id="219" Count="0" />
-      <LineId Id="225" Count="0" />
-      <LineId Id="220" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="254" Count="0" />
+      <LineId Id="219" Count="1" />
+      <LineId Id="248" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="249" Count="0" />
       <LineId Id="222" Count="0" />
-      <LineId Id="221" Count="0" />
       <LineId Id="214" Count="0" />
       <LineId Id="213" Count="0" />
       <LineId Id="212" Count="0" />
