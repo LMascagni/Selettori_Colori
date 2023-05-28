@@ -69,7 +69,7 @@ ELSE
 	
 	(*Case*)
 	CASE eStep OF
-		(*Start*)
+		(*Start Step*)
 		E_Step.Start :
 			(*Body*)
 			bLStart	:= TRUE;
@@ -91,7 +91,7 @@ ELSE
 				END_IF
 			END_IF
 			
-		(*Measuring*)
+		(*Measuring Step*)
 		E_Step.Measuring :
 			(*Body*)
 			bLStart	:= TRUE;
@@ -102,7 +102,7 @@ ELSE
 		
 			(*Transition - to Measuring*)
 			IF fbTonStart.Q AND bEnable THEN
-				eNewStep := E_Step.Measuring;
+				eNewStep := E_Step.Processing;
 			END_IF
 			
 			(*Exit Act*)
@@ -112,7 +112,7 @@ ELSE
 					nErrId	:= 16#9999_9999;
 				END_IF
 			END_IF
-			(*Start*)
+		(*Processing Step*)
 		E_Step.Start :
 			(*Body*)
 			bLStart	:= TRUE;

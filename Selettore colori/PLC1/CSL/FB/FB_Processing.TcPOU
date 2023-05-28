@@ -12,14 +12,28 @@ VAR_IN_OUT
 	slot		:	INT;	
 END_VAR
 VAR
-	
+	stParams	:	ST_CSL_Params;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[IF SensorInput < stParams.BlueVoltageMax AND SensorInput > stParams.BlueVoltageMin THEN
+	slot	:=	stParams.BlueSlot;
+ELSE IF SensorInput < stParams.RedVoltageMax AND SensorInput > stParams.RedVoltageMin THEN
+	slot	:=	stParams.RedSlot;
+ELSE IF SensorInput < stParams.WhiteVoltageMax AND SensorInput > stParams.WhiteVoltageMin THEN
+	slot	:=	stParams.WhiteSlot;
+ELSE
+	slot	:=	0;
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_Processing">
       <LineId Id="9" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="26" Count="1" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
