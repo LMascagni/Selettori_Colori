@@ -3,28 +3,34 @@
   <POU Name="MAIN" Id="{63e7df63-7f3f-44d1-9324-af642dc6ce72}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 
-
 VAR
 	stRawIn	:	ST_CSL_RawIn;
 	stRawOut:	ST_CSL_RawOut;
 	stIn	:	ST_CSL_In;
+	stParams:	ST_CSL_Params;
 	sensorFiltered : REAL;
 	Filter	:	FB_Filter;
 	Misura : FB_Measuring;
+	slot:FB_Processing;
 	out: REAL;
+	nSlot:INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[stParams := FC_ParamsCalculation();
+
 stRawOut.bMotor := stRawIn.bStart;
 stIn.nColorSensor := FC_Tensione(stRawIn.nColorSensor, -10.0, 10.0);
 
 Filter(VIn := stIn.nColorSensor, VOut := sensorFiltered);
 
 misura(Vin := sensorFiltered, Vout:= out);
+
+slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="78" Count="0" />
       <LineId Id="25" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="47" Count="0" />
@@ -32,7 +38,9 @@ misura(Vin := sensorFiltered, Vout:= out);
       <LineId Id="59" Count="0" />
       <LineId Id="49" Count="0" />
       <LineId Id="62" Count="0" />
+      <LineId Id="76" Count="0" />
       <LineId Id="2" Count="0" />
+      <LineId Id="80" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

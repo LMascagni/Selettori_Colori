@@ -35,6 +35,9 @@
     <Compile Include="CSL\FC\FC_Tensione.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FC\FC_ParamsCalculation.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>

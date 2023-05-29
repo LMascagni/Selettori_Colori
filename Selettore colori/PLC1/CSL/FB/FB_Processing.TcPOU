@@ -9,18 +9,18 @@ VAR_OUTPUT
 	
 END_VAR
 VAR_IN_OUT
-	slot		:	INT;	
+	slot		:	INT;
+	stParams	:	ST_CSL_Params;	
 END_VAR
 VAR
-	stParams	:	ST_CSL_Params;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF SensorInput < stParams.BlueVoltageMax AND SensorInput > stParams.BlueVoltageMin THEN
 	slot	:=	stParams.BlueSlot;
-ELSE IF SensorInput < stParams.RedVoltageMax AND SensorInput > stParams.RedVoltageMin THEN
+ELSIF SensorInput < stParams.RedVoltageMax AND SensorInput > stParams.RedVoltageMin THEN
 	slot	:=	stParams.RedSlot;
-ELSE IF SensorInput < stParams.WhiteVoltageMax AND SensorInput > stParams.WhiteVoltageMin THEN
+ELSIF SensorInput < stParams.WhiteVoltageMax AND SensorInput > stParams.WhiteVoltageMin THEN
 	slot	:=	stParams.WhiteSlot;
 ELSE
 	slot	:=	0;
