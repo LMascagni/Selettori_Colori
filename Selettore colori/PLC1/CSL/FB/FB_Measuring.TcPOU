@@ -6,18 +6,21 @@ VAR_INPUT
 	VIn		:	REAL;
 END_VAR
 VAR_OUTPUT
+	EndMeasure	:	BOOL;
+	
 END_VAR
 VAR_IN_OUT
-	
-	VOut	:	REAL;
+	VOut		:	REAL;
 END_VAR
 VAR
 	VPrev	:	REAL	:=	10.0;
+	fbTonEndMeasure	:	TON;
 	En : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
+      <ST><![CDATA[fbTonEndMeasure(IN := (VPrev = VIn), PT := T#500MS);
+EndMeasure := fbTonEndMeasure.Q;
 IF VIn < VPrev THEN
 	VPrev := VIn;
 	En := TRUE;
@@ -31,7 +34,7 @@ IF En = TRUE THEN
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_Measuring">
-      <LineId Id="20" Count="0" />
+      <LineId Id="72" Count="1" />
       <LineId Id="9" Count="0" />
       <LineId Id="18" Count="0" />
       <LineId Id="52" Count="0" />

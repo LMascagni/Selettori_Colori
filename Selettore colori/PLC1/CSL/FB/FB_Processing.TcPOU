@@ -6,10 +6,10 @@ VAR_INPUT
 	SensorInput	:	REAL;
 END_VAR
 VAR_OUTPUT
+	slot		:	INT;
 	
 END_VAR
 VAR_IN_OUT
-	slot		:	INT;
 	stParams	:	ST_CSL_Params;	
 END_VAR
 VAR

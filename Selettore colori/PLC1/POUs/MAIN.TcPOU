@@ -8,25 +8,32 @@ VAR
 	stRawOut:	ST_CSL_RawOut;
 	stIn	:	ST_CSL_In;
 	stParams:	ST_CSL_Params;
+	fbSensor:	FB_Sensor;
+	(*
 	sensorFiltered : REAL;
 	Filter	:	FB_Filter;
 	Misura : FB_Measuring;
 	slot:FB_Processing;
 	out: REAL;
+	*)
 	nSlot:INT;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[stParams := FC_ParamsCalculation();
-
+(*
 stRawOut.bMotor := stRawIn.bStart;
-stIn.nColorSensor := FC_Tensione(stRawIn.nColorSensor, -10.0, 10.0);
+stIn.nColorSensor := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0);
 
 Filter(VIn := stIn.nColorSensor, VOut := sensorFiltered);
 
 misura(Vin := sensorFiltered, Vout:= out);
 
 slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
+*)
+
+fbSensor(bEnable := TRUE, stIn := stIn);
+nSlot := fbSensor.nSlot;
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
@@ -40,7 +47,11 @@ slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
       <LineId Id="62" Count="0" />
       <LineId Id="76" Count="0" />
       <LineId Id="2" Count="0" />
-      <LineId Id="80" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="105" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
