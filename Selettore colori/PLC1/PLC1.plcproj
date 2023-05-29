@@ -23,9 +23,6 @@
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSL\Structs\ST_CSL_Colors.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_In.TcDUT">
       <SubType>Code</SubType>
     </Compile>

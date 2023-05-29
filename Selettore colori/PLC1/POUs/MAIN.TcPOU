@@ -5,23 +5,38 @@
 
 
 VAR
-	stRawIn	:	ST_CSL_RawIn;
-	stRawOut:	ST_CSL_RawOut;
-	stIn	:	ST_CSL_In;
+	stRawIn		:	ST_CSL_RawIn;
+	stRawOut	:	ST_CSL_RawOut;
+	stIn		:	ST_CSL_In;
+	
+	timer	: TON();
+	fb	: FB_MSF_Pistoni;
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-stRawOut.bMotor := stRawIn.bStart;
-stIn.nColorSensor := FC_Tensione(stRawIn.nColorSensor, -10.0, 10.0);
+      <ST><![CDATA[stRawout.bMotor	:= TRUE;
+IF stRawin.bPieceSensorOutput THEN
+	stRawout.bMotor	:= FALSE;
+	timer (IN:= (stRawin.bPieceSensorOutput), PT := T#1000MS);
+		IF timer.Q	THEN
+			fb(
+				
+			);
+		END_IF
+END_IF
 
-]]></ST>
+	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="25" Count="0" />
-      <LineId Id="29" Count="0" />
       <LineId Id="47" Count="0" />
+      <LineId Id="59" Count="1" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="61" Count="0" />
       <LineId Id="49" Count="0" />
       <LineId Id="2" Count="0" />
     </LineIds>
