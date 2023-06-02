@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_CSL_StatusSaved" Id="{d0302c11-9076-4940-913f-e926deb6693e}">
+    <Declaration><![CDATA[TYPE ST_CSL_StatusSaved :
+STRUCT
+	nPowerOnCnt 	: 	UDINT; 		// machine ignition counter
+	nStartStopCnt 	: 	UDINT; 		// machine start counter
+	nCriticalCnt 	: 	UDINT; 		// critical event counter
+	nErrorCnt 		: 	UDINT; 		// error counter 
+	nWarningCnt 	: 	UDINT; 		// alert counter
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

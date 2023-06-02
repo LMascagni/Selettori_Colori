@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL_CSL_IO" Id="{d8167ffe-e92f-4a56-815a-d5c61a49cd4e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL PERSISTENT
+	stCslParams 		: 	ST_CSL_Params;    
+	stCslStatusSaved 	: 	ST_CSL_StatusSaved;
+END_VAR
+
+VAR_GLOBAL    
+	stCslDiagnostic 	: 	ST_CSL_Diagnostic;   
+ 	stCslIn 			: 	ST_CSL_In;   
+ 	stCslRawIn 			: 	ST_CSL_RawIn;  
+ 	stCslOut			: 	ST_CSL_Out;   
+ 	stCslRawOut 		: 	ST_CSL_RawOut;    
+    stCslStatus 		: 	ST_CSL_Status;   
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
