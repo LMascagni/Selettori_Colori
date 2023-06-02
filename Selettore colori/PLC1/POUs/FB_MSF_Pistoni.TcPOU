@@ -10,9 +10,9 @@ END_VAR
 
 VAR_IN_OUT
 	
-	st_In	:	ST_CSL_In;
-	st_Params	: ST_CSL_Params;
-	st_Out		: ST_CSL_Out;
+	st_In		:	ST_CSL_In;
+	st_Params	: 	ST_CSL_Params;
+	st_Out		: 	ST_CSL_Out;
 	
 END_VAR
 
@@ -45,107 +45,108 @@ END_VAR
     <Implementation>
       <ST><![CDATA[(* initialization *)
 IF NOT bInitialized THEN    
-eNewstep := E_Step.NoStep;    
-eStep := E_Step.Stop;    
-bEntryact := FALSE;    
-bInitialized := TRUE; 
+	eNewstep 		:= 	E_Step.NoStep;    
+	eStep 			:= 	E_Step.Stop;    
+	bEntryact 		:= 	FALSE;    
+	bInitialized 	:= 	TRUE; 
 
 ELSE   
 
-(* forcing the error state *)	
-(* disabled or faulty *)
-IF NOT bEnable THEN
-eNewstep := E_Step.NeOrError;
+	(* forcing the error state *)	
+	(* disabled or faulty *)
+	IF NOT bEnable THEN
+		eNewstep 	:=	E_Step.NeOrError;
 
-END_IF;
+	END_IF;
 
-(* state change managementstate change management *)
-IF eNewstep <> E_Step.NoStep THEN    
-eStep := eNewstep;    
-eNewstep := E_Step.NoStep;   
- bEntryact := FALSE;
+	(* state change managementstate change management *)
+	IF eNewstep <> E_Step.NoStep THEN    
+		eStep 		:= 	eNewstep;    
+		eNewstep 	:= 	E_Step.NoStep;   
+ 		bEntryact 	:= 	FALSE;
 
-END_IF;
+	END_IF;
 
-// association of the motors and the sensors to the steps
-CASE slot OF
-	0:
-		nStepSlot	:=	st_Params.StepNoSlot;	
-	1:
-		bValve:= st_Out.bValveSlot1;
-		bSensor := st_In.bSlot1;
-		nStepSlot := st_Params.StepSlot1;
-	2:
-		bValve:= st_Out.bValveSlot2;
-		bSensor := st_In.bSlot2;
-		nStepSlot := st_Params.StepSlot2;
-	3:
-		bValve:= st_Out.bValveSlot3;
-		bSensor := st_In.bSlot3;
-		nStepSlot := st_Params.StepSlot3;
-END_CASE
+	// association of the motors and the sensors to the steps
+	CASE slot OF
+		0:
+			nStepSlot	:=	st_Params.StepNoSlot;	
+		1:
+			bValve		:= 	st_Out.bValveSlot1;
+			bSensor 	:= 	st_In.bSlot1;
+			nStepSlot 	:= 	st_Params.StepSlot1;
+		2:
+			bValve		:= 	st_Out.bValveSlot2;
+			bSensor 	:= 	st_In.bSlot2;
+			nStepSlot 	:= 	st_Params.StepSlot2;
+		3:
+			bValve		:= 	st_Out.bValveSlot3;
+			bSensor 	:= 	st_In.bSlot3;
+			nStepSlot 	:= 	st_Params.StepSlot3;
+			
+	END_CASE
 
-(* input signal conditioning *)
-Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
+	(* input signal conditioning *)
+	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
 
-// storing of the pieces
-CASE eStep OF
+	// storing of the pieces
+	CASE eStep OF
 
-// conveyor of the pieces
-	E_Step.conveyor :
+		// conveyor of the pieces
+		E_Step.conveyor :
 	
-		(* body *)	
-		st_Out.bMotor	:= TRUE;
-		st_Out.bCompressor := TRUE;
-		bValve 	:=	FALSE;	
+			(* body *)	
+			st_Out.bMotor		:=	 TRUE;
+			st_Out.bCompressor 	:=	 TRUE;
+			bValve 				:=	 FALSE;	
 		
-		(* transition *)	
-		IF bEnable THEN          
-		 eNewstep := E_Step.NeOrError;        
-		ELSE 
-			IF  iMotor = nStepSlot THEN 
-		eNewstep := E_Step.waiting;            
+			(* transition *)	
+			IF bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF  iMotor = nStepSlot THEN 
+					eNewstep := E_Step.waiting;            
+        		END_IF;
+			END_IF
 	
-        END_IF;
-	END_IF
+		// waiting of the movement of the piston
+		E_Step.waiting :
 	
-	// waiting of the measure of the pieces color and number of steps
-	E_Step.waiting :
-	
-		(* body *)
-		st_Out.bMotor	:= FALSE;
-		st_Out.bCompressor := TRUE;
-		bValve 	:=	FALSE;	
-		
-		
-		(* transition *)
-		IF bEnable THEN          
-		 eNewstep := E_Step.NeOrError;        
-		ELSE 
-			IF  Timer_Pistons.Q THEN 
-		eNewstep := E_Step.piston;            
-	
-        END_IF;
-	END_IF	
-	
-	// activation of the motors of the pistons.
-	E_Step.piston :
-		(* body *)
-		st_Out.bMotor	:= FALSE;
-		st_Out.bCompressor := TRUE;
-		bValve 	:=	TRUE;	       
-	
-ELSE
-	
-// Error case
-	eNewstep := E_Step.NeOrError;
-	eErrStep := E_Step.Unknown;
-	nErrId := -9; 	
+			(* body *)
+			st_Out.bMotor		:=	FALSE;
+			st_Out.bCompressor 	:= 	TRUE;
+			bValve 				:=	FALSE;	
 		
 		
-END_CASE
+			(* transition *)
+			IF bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF  Timer_Pistons.Q THEN 
+					eNewstep := E_Step.piston;            
+       	 		END_IF;
+			END_IF	
+	
+		// activation of the motors of the pistons.
+		E_Step.piston :
+			(* body *)
+			st_Out.bMotor		:= 	FALSE;
+			st_Out.bCompressor 	:= 	TRUE;
+			bValve 				:=	TRUE;	       
+	
+	
+		ELSE
+	
+		// Error case
+		eNewstep 	:= 	E_Step.NeOrError;
+		eErrStep 	:=	E_Step.Unknown;
+		nErrId 		:= 	-9; 	
+		
+		
+	END_CASE
 
- END_IF]]></ST>
+
+END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_MSF_Pistoni">
       <LineId Id="263" Count="1" />
@@ -174,6 +175,7 @@ END_CASE
       <LineId Id="194" Count="1" />
       <LineId Id="187" Count="0" />
       <LineId Id="203" Count="0" />
+      <LineId Id="481" Count="0" />
       <LineId Id="186" Count="0" />
       <LineId Id="323" Count="1" />
       <LineId Id="322" Count="0" />
@@ -190,25 +192,29 @@ END_CASE
       <LineId Id="373" Count="1" />
       <LineId Id="376" Count="1" />
       <LineId Id="383" Count="0" />
-      <LineId Id="379" Count="2" />
+      <LineId Id="379" Count="0" />
+      <LineId Id="381" Count="0" />
       <LineId Id="384" Count="0" />
       <LineId Id="435" Count="0" />
       <LineId Id="385" Count="1" />
       <LineId Id="434" Count="0" />
       <LineId Id="387" Count="4" />
-      <LineId Id="393" Count="8" />
+      <LineId Id="393" Count="6" />
+      <LineId Id="401" Count="0" />
       <LineId Id="352" Count="0" />
       <LineId Id="427" Count="0" />
       <LineId Id="426" Count="0" />
       <LineId Id="403" Count="4" />
       <LineId Id="416" Count="0" />
       <LineId Id="402" Count="0" />
+      <LineId Id="483" Count="0" />
       <LineId Id="429" Count="1" />
       <LineId Id="420" Count="0" />
       <LineId Id="418" Count="1" />
       <LineId Id="353" Count="1" />
       <LineId Id="348" Count="0" />
       <LineId Id="213" Count="0" />
+      <LineId Id="484" Count="0" />
       <LineId Id="212" Count="0" />
     </LineIds>
   </POU>
