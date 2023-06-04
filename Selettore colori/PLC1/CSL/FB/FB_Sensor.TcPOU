@@ -68,8 +68,7 @@ ELSE
 	
 	(*Filters*)
 	fbTonStart(IN := stIn.bPieceSensorInput, PT := T#2S);
-	
-	
+		
 	(*Case*)
 	CASE eStep OF
 		(*Start Step*)
@@ -165,7 +164,6 @@ END_IF]]></ST>
       <LineId Id="95" Count="1" />
       <LineId Id="98" Count="0" />
       <LineId Id="97" Count="0" />
-      <LineId Id="68" Count="0" />
       <LineId Id="81" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="106" Count="0" />

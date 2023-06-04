@@ -34,7 +34,9 @@ slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
 
 fbSensor(bEnable := TRUE, stIn := stIn);
 nSlot := fbSensor.nSlot;
-stRawOut := fbSensor.stOut;]]></ST>
+stRawOut := fbSensor.stOut;
+
+// per la transizione: fbSensor.bFbEnd = 1]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="78" Count="0" />
@@ -52,6 +54,8 @@ stRawOut := fbSensor.stOut;]]></ST>
       <LineId Id="100" Count="0" />
       <LineId Id="103" Count="0" />
       <LineId Id="105" Count="0" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="123" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
