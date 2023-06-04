@@ -97,7 +97,7 @@ ELSE
 	(*filters*)
 	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
 	(*fronts*)
-	fbRtMotorImpulse(CLK:=	st_In.bMotorImpulse );
+	//fbRtMotorImpulse(CLK:=	st_In.bMotorImpulse );
 
 	// storing of the pieces
 	CASE eStep OF
@@ -111,7 +111,7 @@ ELSE
 			bValve 				:=	 FALSE;	
 			
 			(*Counter of steps*)
-			IF fbRtMotorImpulse	THEN
+			IF st_In.bMotorImpulse	THEN
 				iMotor := iMotor + 1;
 			END_IF
 		

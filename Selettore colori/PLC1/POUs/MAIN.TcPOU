@@ -8,9 +8,19 @@ VAR
 	stRawIn		:	ST_CSL_RawIn;
 	stRawOut	:	ST_CSL_RawOut;
 	stIn		:	ST_CSL_In;
+	stOut		: 	ST_CSL_Out;
+	stParams	:	ST_CSL_Params; 
+	
+	estep 	: E_Step;
+	
 	
 	timer	: TON();
 	fb	: FB_MSF_Pistoni;
+	
+	slots	: INT;
+	iMotors	: INT	:= 0;
+	
+	nerrid	: DINT; 
 	
 END_VAR
 ]]></Declaration>
@@ -20,16 +30,16 @@ IF stRawin.bPieceSensorOutput THEN
 	stRawout.bMotor	:= FALSE;
 	timer (IN:= (stRawin.bPieceSensorOutput), PT := T#1000MS);
 		IF timer.Q	THEN
-			fb(
-	bEnable:= , 
-	slot:= , 
-	iMotor:= , 
-	st_In:= , 
-	st_Params:= , 
-	st_Out:= , 
-	eStep=> , 
-	eErrStep=> , 
-	nErrid=> );
+		fb(
+	bEnable:= NOT(stIn.bEmerg), 
+	slot:= slots, 
+	iMotor:= iMotors, 
+	st_In:= stIn, 
+	st_Params:= stParams, 
+	st_Out:= stOut, 
+	eStep=>  estep, 
+	eErrStep=> estep, 
+	nErrid=> nerrid);
 		END_IF
 END_IF
 
@@ -40,7 +50,7 @@ END_IF
       <LineId Id="59" Count="1" />
       <LineId Id="63" Count="0" />
       <LineId Id="66" Count="0" />
-      <LineId Id="93" Count="8" />
+      <LineId Id="114" Count="8" />
       <LineId Id="67" Count="1" />
       <LineId Id="61" Count="0" />
       <LineId Id="49" Count="0" />
