@@ -21,8 +21,15 @@ IF stRawin.bPieceSensorOutput THEN
 	timer (IN:= (stRawin.bPieceSensorOutput), PT := T#1000MS);
 		IF timer.Q	THEN
 			fb(
-				
-			);
+	bEnable:= , 
+	slot:= , 
+	iMotor:= , 
+	st_In:= , 
+	st_Params:= , 
+	st_Out:= , 
+	eStep=> , 
+	eErrStep=> , 
+	nErrid=> );
 		END_IF
 END_IF
 
@@ -32,10 +39,9 @@ END_IF
       <LineId Id="47" Count="0" />
       <LineId Id="59" Count="1" />
       <LineId Id="63" Count="0" />
-      <LineId Id="66" Count="1" />
-      <LineId Id="70" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="68" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="93" Count="8" />
+      <LineId Id="67" Count="1" />
       <LineId Id="61" Count="0" />
       <LineId Id="49" Count="0" />
       <LineId Id="2" Count="0" />

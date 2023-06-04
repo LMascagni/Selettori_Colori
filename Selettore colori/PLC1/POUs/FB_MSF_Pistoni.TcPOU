@@ -39,7 +39,11 @@ VAR
 	bInitialized	: BOOL;		//FB initialization
 	eNewStep : E_Step;			//request for a new step
 	bEntryact	: 	BOOL;		//step entry action performed
+	
+	fbRtMotorImpulse	: R_TRIG;
+	
 		
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -86,8 +90,14 @@ ELSE
 			
 	END_CASE
 
+	
+	
+	
 	(* input signal conditioning *)
+	(*filters*)
 	Timer_Pistons (IN:= (iMotor = nStepSlot), PT := T#500MS);
+	(*fronts*)
+	fbRtMotorImpulse(CLK:=	st_In.bMotorImpulse );
 
 	// storing of the pieces
 	CASE eStep OF
@@ -99,6 +109,11 @@ ELSE
 			st_Out.bMotor		:=	 TRUE;
 			st_Out.bCompressor 	:=	 TRUE;
 			bValve 				:=	 FALSE;	
+			
+			(*Counter of steps*)
+			IF fbRtMotorImpulse	THEN
+				iMotor := iMotor + 1;
+			END_IF
 		
 			(* transition *)	
 			IF bEnable THEN          
@@ -116,7 +131,7 @@ ELSE
 			st_Out.bMotor		:=	FALSE;
 			st_Out.bCompressor 	:= 	TRUE;
 			bValve 				:=	FALSE;	
-		
+			iMotor := 0;
 		
 			(* transition *)
 			IF bEnable THEN          
@@ -177,8 +192,13 @@ END_IF]]></ST>
       <LineId Id="203" Count="0" />
       <LineId Id="481" Count="0" />
       <LineId Id="186" Count="0" />
-      <LineId Id="323" Count="1" />
+      <LineId Id="527" Count="0" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="528" Count="1" />
+      <LineId Id="324" Count="0" />
+      <LineId Id="530" Count="0" />
       <LineId Id="322" Count="0" />
+      <LineId Id="531" Count="1" />
       <LineId Id="345" Count="1" />
       <LineId Id="423" Count="0" />
       <LineId Id="440" Count="0" />
@@ -188,6 +208,9 @@ END_IF]]></ST>
       <LineId Id="349" Count="1" />
       <LineId Id="369" Count="0" />
       <LineId Id="371" Count="0" />
+      <LineId Id="535" Count="0" />
+      <LineId Id="539" Count="0" />
+      <LineId Id="536" Count="2" />
       <LineId Id="351" Count="0" />
       <LineId Id="373" Count="1" />
       <LineId Id="376" Count="1" />
