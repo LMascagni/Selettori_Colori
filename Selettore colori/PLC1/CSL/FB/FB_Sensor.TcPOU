@@ -16,7 +16,7 @@ VAR_OUTPUT
 	
 	bFbEnd				:	BOOL;
 	
-	stOut				:	ST_CSL_Out;
+	stOut				:	ST_CSL_RawOut;
 	
 	nSlot				:	INT;
 	

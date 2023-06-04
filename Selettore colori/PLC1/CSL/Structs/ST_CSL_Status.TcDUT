@@ -3,7 +3,7 @@
   <DUT Name="ST_CSL_Status" Id="{b0963755-a8be-4391-8d2e-1784b00754d6}">
     <Declaration><![CDATA[TYPE ST_CSL_Status :
 STRUCT
-	stSaved 	: 	ST_FLM_StatusSaved; 	// Retained values ​​- useful e.g. for statistics 
+	stSaved 	: 	ST_CSL_StatusSaved; 	// Retained values ​​- useful e.g. for statistics 
  	bCritical 	: 	BOOL; 					// the machine has at least one active critical condition
 	bError 		: 	BOOL; 					// the machine has at least one active error condition    
 	bWarning 	: 	BOOL; 					// the machine has at least one active signal   

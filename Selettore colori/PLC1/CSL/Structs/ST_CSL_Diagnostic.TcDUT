@@ -3,12 +3,13 @@
   <DUT Name="ST_CSL_Diagnostic" Id="{2496aee4-be2f-4bf2-9b51-08798cf085f2}">
     <Declaration><![CDATA[TYPE ST_CSL_Diagnostic :
 STRUCT
+	(*
 	aCritical 	: 	ARRAY[0..GVL_Diagnostic.cMAXEVENTS - 1] OF BOOL; 		// critic events   
 	aError 		: 	ARRAY[0..GVL_Diagnostic.cMAXEVENTS - 1] OF BOOL; 		// errors    
 	aWarning 	: 	ARRAY[0..GVL_Diagnostic.cMAXEVENTS - 1] OF BOOL; 	 	// reports    
 	aInfo 		: 	ARRAY[0..GVL_Diagnostic.cMAXEVENTS - 1] OF BOOL; 		// informations   
  	aVerbose 	: 	ARRAY[0..GVL_Diagnostic.cMAXEVENTS - 1] OF BOOL;  		// message
-
+*)
 END_STRUCT
 END_TYPE
 ]]></Declaration>

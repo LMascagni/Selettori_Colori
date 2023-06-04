@@ -1709,7 +1709,7 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{3EDF9352-52F3-4952-9761-FBBC22E56AED}" Name="PLC1" PrjFilePath="PLC1\PLC1.plcproj" TmcFilePath="PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{DAA5B23E-E5AA-284B-4607-A9C596ED7D80}">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{6FA9B938-948E-E11F-40E5-77CA48104291}">
 					<Name>PLC1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
@@ -1769,6 +1769,61 @@ External Setpoint Generation:
 							<Comment><![CDATA[I4]]></Comment>
 							<Type>INT</Type>
 						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bMotorImpulse</Name>
+							<Comment><![CDATA[I1  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bPieceSensorInput</Name>
+							<Comment><![CDATA[I2  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bPieceSensorOutput</Name>
+							<Comment><![CDATA[I3  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bSlot1</Name>
+							<Comment><![CDATA[I5  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bSlot2</Name>
+							<Comment><![CDATA[I6  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bSlot3</Name>
+							<Comment><![CDATA[I7  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bStart</Name>
+							<Comment><![CDATA[I9  (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bStop</Name>
+							<Comment><![CDATA[I10 (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bAck</Name>
+							<Comment><![CDATA[I11 (NO)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.bEmerg</Name>
+							<Comment><![CDATA[12  (NC)]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawIn.nColorSensor</Name>
+							<Comment><![CDATA[I4]]></Comment>
+							<Type>INT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
@@ -1809,6 +1864,86 @@ External Setpoint Generation:
 						</Var>
 						<Var>
 							<Name>MAIN.stRawOut.bLAck</Name>
+							<Comment><![CDATA[Q11]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bMotor</Name>
+							<Comment><![CDATA[Q1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bCompressor</Name>
+							<Comment><![CDATA[Q2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bValveSlot1</Name>
+							<Comment><![CDATA[Q3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bValveSlot2</Name>
+							<Comment><![CDATA[Q4]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bValveSlot3</Name>
+							<Comment><![CDATA[Q5]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bLStart</Name>
+							<Comment><![CDATA[Q9 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bLStop</Name>
+							<Comment><![CDATA[Q10]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.fbSensor.stOut.bLAck</Name>
+							<Comment><![CDATA[Q11]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bMotor</Name>
+							<Comment><![CDATA[Q1]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bCompressor</Name>
+							<Comment><![CDATA[Q2]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bValveSlot1</Name>
+							<Comment><![CDATA[Q3]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bValveSlot2</Name>
+							<Comment><![CDATA[Q4]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bValveSlot3</Name>
+							<Comment><![CDATA[Q5]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bLStart</Name>
+							<Comment><![CDATA[Q9 ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bLStop</Name>
+							<Comment><![CDATA[Q10]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_CSL_IO.stCslRawOut.bLAck</Name>
 							<Comment><![CDATA[Q11]]></Comment>
 							<Type>BOOL</Type>
 						</Var>

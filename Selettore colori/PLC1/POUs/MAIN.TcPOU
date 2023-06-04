@@ -34,7 +34,7 @@ slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
 
 fbSensor(bEnable := TRUE, stIn := stIn);
 nSlot := fbSensor.nSlot;
-]]></ST>
+stRawOut := fbSensor.stOut;]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="78" Count="0" />
