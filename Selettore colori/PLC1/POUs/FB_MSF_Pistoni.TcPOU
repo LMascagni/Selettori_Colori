@@ -19,12 +19,11 @@ END_VAR
 
 VAR_OUTPUT
 	
-	
-	
 	eStep	: E_Step;		//current step of the state machine
 	eErrStep : E_Step;  //step where an error was raised
 	nErrid	: DINT;		//error identification code
 	
+	bFbEnd	:	BOOL;
 	
 	
 	END_VAR
@@ -53,23 +52,7 @@ IF NOT bInitialized THEN
 	eStep 			:= 	E_Step.Stop;    
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
-
-ELSE   
-
-	(* forcing the error state *)	
-	(* disabled or faulty *)
-	IF NOT bEnable THEN
-		eNewstep 	:=	E_Step.NeOrError;
-
-	END_IF;
-
-	(* state change managementstate change management *)
-	IF eNewstep <> E_Step.NoStep THEN    
-		eStep 		:= 	eNewstep;    
-		eNewstep 	:= 	E_Step.NoStep;   
- 		bEntryact 	:= 	FALSE;
-
-	END_IF;
+	bFbEnd			:=	FALSE;
 
 	// association of the motors and the sensors to the steps
 	CASE slot OF
@@ -90,8 +73,24 @@ ELSE
 			
 	END_CASE
 
-	
-	
+
+ELSE   
+
+	(* forcing the error state *)	
+	(* disabled or faulty *)
+	IF bEnable THEN
+		eNewstep 	:=	E_Step.NeOrError;
+
+	END_IF;
+
+	(* state change managementstate change management *)
+	IF eNewstep <> E_Step.NoStep THEN    
+		eStep 		:= 	eNewstep;    
+		eNewstep 	:= 	E_Step.NoStep;   
+ 		bEntryact 	:= 	FALSE;
+
+	END_IF;
+
 	
 	(* input signal conditioning *)
 	(*filters*)
@@ -144,10 +143,20 @@ ELSE
 	
 		// activation of the motors of the pistons.
 		E_Step.piston :
+
 			(* body *)
 			st_Out.bMotor		:= 	FALSE;
 			st_Out.bCompressor 	:= 	TRUE;
-			bValve 				:=	TRUE;	       
+			bValve 				:=	TRUE;
+	
+			* transition *)
+			IF bEnable THEN          
+		 		eNewstep := E_Step.NeOrError;        
+			ELSE 
+				IF  NOT bsensor THEN 
+					bFbEnd	:= TRUE;         
+       	 			END_IF;
+			END_IF
 	
 	
 		ELSE
