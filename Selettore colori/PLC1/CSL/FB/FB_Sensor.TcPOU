@@ -23,6 +23,7 @@ VAR_OUTPUT
 END_VAR
 
 VAR_IN_OUT
+	stParams			:	ST_CSL_Params;
 	
 END_VAR
 
@@ -35,7 +36,6 @@ VAR
 	fbMeasure			:	FB_Measuring;
 	fbSlot				:	FB_Processing;
 	
-	stParams			:	ST_CSL_Params;
 	
 	rPieceValue			:	REAL;
 	bEndMeasure			:	BOOL;
@@ -67,7 +67,7 @@ ELSE
 	END_IF
 	
 	(*Filters*)
-	fbTonStart(IN := stIn.bPieceSensorInput, PT := T#2S);
+	fbTonStart(IN := NOT stIn.bPieceSensorInput, PT := T#2S);
 		
 	(*Case*)
 	CASE eStep OF
@@ -130,7 +130,7 @@ ELSE
 			nSlot := fbSlot.slot;
 			
 			(*Transition - to exit*)
-			IF fbTonStart.Q AND bEnable THEN
+			IF NOT stIn.bPieceSensorOutput AND bEnable THEN
 				bInitialized := FALSE;
 				bFbEnd := TRUE;
 			END_IF
@@ -142,6 +142,25 @@ ELSE
 					//nErrId	:= 16#9999_9999;
 				END_IF
 			END_IF
+		E_Step.NeOrError :
+			(*Body*)
+			stOut.bLStart	:= TRUE;
+			stOut.bLStop := FALSE;
+			stOut.bLAck := FALSE;
+			
+			stOut.bMotor := FALSE;
+		
+			(*Transition - to Measuring*)
+			
+			
+			(*Exit Act*)
+			IF eNewStep <> E_Step.NoStep THEN
+				IF eNewStep = E_Step.NeOrError THEN
+					eErrStep := eStep;
+					//nErrId	:= 16#9999_9999;
+				END_IF
+			END_IF
+			
 	END_CASE
 END_IF]]></ST>
     </Implementation>
@@ -201,6 +220,9 @@ END_IF]]></ST>
       <LineId Id="258" Count="0" />
       <LineId Id="137" Count="7" />
       <LineId Id="126" Count="0" />
+      <LineId Id="303" Count="8" />
+      <LineId Id="314" Count="8" />
+      <LineId Id="302" Count="0" />
       <LineId Id="71" Count="0" />
       <LineId Id="46" Count="0" />
     </LineIds>

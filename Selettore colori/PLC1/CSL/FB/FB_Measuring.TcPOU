@@ -19,13 +19,13 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbTonEndMeasure(IN := (VPrev = VIn), PT := T#500MS);
+      <ST><![CDATA[fbTonEndMeasure(IN := En = TRUE, PT := T#500MS);
 EndMeasure := fbTonEndMeasure.Q;
 IF VIn < VPrev THEN
 	VPrev := VIn;
 	En := TRUE;
 END_IF
-IF VIn > 7.5 THEN
+IF VIn > 7.3 THEN
 	Vprev := VIn;
 	En := FALSE;
 END_IF

@@ -9,13 +9,10 @@ VAR
 	stIn	:	ST_CSL_In;
 	stParams:	ST_CSL_Params;
 	fbSensor:	FB_Sensor;
-	(*
-	sensorFiltered : REAL;
 	Filter	:	FB_Filter;
-	Misura : FB_Measuring;
-	slot:FB_Processing;
-	out: REAL;
-	*)
+	
+	sensorFiltered : REAL;
+		
 	nSlot:INT;
 END_VAR
 ]]></Declaration>
@@ -32,7 +29,23 @@ misura(Vin := sensorFiltered, Vout:= out);
 slot(SensorInput:=out, slot:=nSlot,stParams:=stParams);
 *)
 
-fbSensor(bEnable := TRUE, stIn := stIn);
+stIn.nColorSensor := FC_Conversion(stRawIn.nColorSensor, -10.0, 10.0);
+
+Filter(VIn := stIn.nColorSensor, VOut := sensorFiltered);
+
+stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
+stIn.bPieceSensorInput 		:= stRawIn.bPieceSensorInput 	;
+stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;	
+stIn.bSlot1 				:= stRawIn.bSlot1 				;	
+stIn.bSlot2 				:= stRawIn.bSlot2 				;	
+stIn.bSlot3	            	:= stRawIn.bSlot3				; 
+stIn.bStart 				:= stRawIn.bStart               ;    	
+stIn.bStop					:= stRawIn.bStop	 			;	
+stIn.bAck 					:= stRawIn.bAck 				;
+stIn.bEmerg 				:= stRawIn.bEmerg				;
+                                        				
+
+fbSensor(bEnable := stIn.bStart, stIn := stIn,stParams := stParams );
 nSlot := fbSensor.nSlot;
 stRawOut := fbSensor.stOut;
 
@@ -50,12 +63,19 @@ stRawOut := fbSensor.stOut;
       <LineId Id="76" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="99" Count="0" />
+      <LineId Id="169" Count="2" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="172" Count="1" />
+      <LineId Id="149" Count="3" />
+      <LineId Id="154" Count="2" />
+      <LineId Id="142" Count="1" />
       <LineId Id="101" Count="0" />
       <LineId Id="100" Count="0" />
       <LineId Id="103" Count="0" />
       <LineId Id="105" Count="0" />
-      <LineId Id="124" Count="0" />
-      <LineId Id="123" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="147" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
