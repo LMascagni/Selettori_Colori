@@ -13,7 +13,7 @@ STRUCT
 	WhiteVoltage		:	REAL	:=	2.9;
 	
 	//threshold
-	Threshold			:	REAL	:=	0.2;
+	Threshold			:	REAL	:=	0.5;
 	
 	//min values
 	RedVoltageMin		:	REAL;

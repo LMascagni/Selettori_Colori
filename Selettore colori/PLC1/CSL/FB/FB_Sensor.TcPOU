@@ -105,32 +105,9 @@ ELSE
 			fbMeasure(Vin := stIn.nColorSensor, Vout := rPieceValue);
 			
 			(*Transition - to Processing*)
-			IF fbMeasure.EndMeasure AND bEnable THEN
-				eNewStep := E_Step.Processing;
-			END_IF
-			
-			(*Exit Act*)
-			IF eNewStep <> E_Step.NoStep THEN
-				IF eNewStep = E_Step.NeOrError THEN
-					eErrStep := eStep;
-					//nErrId	:= 16#9999_9999;
-				END_IF
-			END_IF
-			
-		(*Processing Step*)
-		E_Step.Processing :
-			(*Body*)
-			stOut.bLStart := TRUE;
-			stOut.bLStop := FALSE;
-			stOut.bLAck := FALSE;
-
-			stOut.bMotor := TRUE;
-			
-			fbSlot(SensorInput := rPieceValue, stParams := stParams);
-			nSlot := fbSlot.slot;
-			
-			(*Transition - to exit*)
 			IF NOT stIn.bPieceSensorOutput AND bEnable THEN
+				fbSlot(SensorInput := rPieceValue, stParams := stParams);
+				nSlot := fbSlot.slot;
 				bInitialized := FALSE;
 				bFbEnd := TRUE;
 			END_IF
@@ -142,6 +119,7 @@ ELSE
 					//nErrId	:= 16#9999_9999;
 				END_IF
 			END_IF
+		
 		E_Step.NeOrError :
 			(*Body*)
 			stOut.bLStart	:= TRUE;
@@ -207,19 +185,14 @@ END_IF]]></ST>
       <LineId Id="149" Count="0" />
       <LineId Id="114" Count="0" />
       <LineId Id="229" Count="1" />
-      <LineId Id="115" Count="10" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="363" Count="0" />
+      <LineId Id="365" Count="1" />
+      <LineId Id="364" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="118" Count="7" />
       <LineId Id="107" Count="0" />
-      <LineId Id="188" Count="0" />
-      <LineId Id="127" Count="2" />
-      <LineId Id="251" Count="2" />
-      <LineId Id="255" Count="0" />
-      <LineId Id="189" Count="1" />
-      <LineId Id="240" Count="1" />
-      <LineId Id="257" Count="0" />
-      <LineId Id="134" Count="2" />
-      <LineId Id="258" Count="0" />
-      <LineId Id="137" Count="7" />
-      <LineId Id="126" Count="0" />
+      <LineId Id="367" Count="0" />
       <LineId Id="303" Count="8" />
       <LineId Id="314" Count="8" />
       <LineId Id="302" Count="0" />
