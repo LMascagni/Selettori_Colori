@@ -20,6 +20,9 @@
     <Compile Include="CSL\Enums\E_Step.TcTLEO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="CSL\FB\FB_MSF_Pistons.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CSL\Structs\ST_CSL_RawOut.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -38,21 +41,13 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FB_Filter.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FB_MSF_Pistoni.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\FC_Tensione.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CSL\Enums" />
+    <Folder Include="CSL\FB" />
     <Folder Include="CSL\Structs" />
     <Folder Include="DUTs" />
     <Folder Include="GVLs" />

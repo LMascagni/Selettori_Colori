@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_MSF_Pistoni" Id="{78e36ba8-cb60-4537-88b2-3ff9943f6860}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistoni
+  <POU Name="FB_MSF_Pistons" Id="{78e36ba8-cb60-4537-88b2-3ff9943f6860}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MSF_Pistons
 VAR_INPUT
 	bEnable	: BOOL;
 	slot	: INT;
-	iMotor	: INT;
+
 END_VAR
 
 VAR_IN_OUT
 	
 	st_In		:	ST_CSL_In;
 	st_Params	: 	ST_CSL_Params;
-	st_Out		: 	ST_CSL_Out;
+	
 	
 END_VAR
 
@@ -25,6 +25,7 @@ VAR_OUTPUT
 	
 	bFbEnd	:	BOOL;
 	
+	st_Out		: 	ST_CSL_RawOut;
 	
 	END_VAR
 VAR
@@ -33,6 +34,7 @@ VAR
 	nStepSlot : INT;
 	Timer_Pistons : TON();
 	Error: DINT;
+	iMotor	: INT := 0;
     
 
 	bInitialized	: BOOL;		//FB initialization
@@ -49,7 +51,7 @@ END_VAR
       <ST><![CDATA[(* initialization *)
 IF NOT bInitialized THEN    
 	eNewstep 		:= 	E_Step.NoStep;    
-	eStep 			:= 	E_Step.Stop;    
+	eStep 			:= 	E_Step.Conveyor;    
 	bEntryact 		:= 	FALSE;    
 	bInitialized 	:= 	TRUE; 
 	bFbEnd			:=	FALSE;
@@ -78,7 +80,7 @@ ELSE
 
 	(* forcing the error state *)	
 	(* disabled or faulty *)
-	IF bEnable THEN
+	IF  NOT bEnable THEN
 		eNewstep 	:=	E_Step.NeOrError;
 
 	END_IF;
@@ -149,7 +151,7 @@ ELSE
 			st_Out.bCompressor 	:= 	TRUE;
 			bValve 				:=	TRUE;
 	
-			* transition *)
+			(* transition *)
 			IF bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
@@ -172,7 +174,7 @@ ELSE
 
 END_IF]]></ST>
     </Implementation>
-    <LineIds Name="FB_MSF_Pistoni">
+    <LineIds Name="FB_MSF_Pistons">
       <LineId Id="263" Count="1" />
       <LineId Id="301" Count="3" />
       <LineId Id="306" Count="0" />
@@ -248,6 +250,8 @@ END_IF]]></ST>
       <LineId Id="213" Count="0" />
       <LineId Id="484" Count="0" />
       <LineId Id="212" Count="0" />
+      <LineId Id="118" Count="8" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
