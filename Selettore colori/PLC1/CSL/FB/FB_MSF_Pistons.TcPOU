@@ -117,7 +117,7 @@ ELSE
 			END_IF
 		
 			(* transition *)	
-			IF bEnable THEN          
+			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF  iMotor = nStepSlot THEN 
@@ -135,7 +135,7 @@ ELSE
 			iMotor := 0;
 		
 			(* transition *)
-			IF bEnable THEN          
+			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF  Timer_Pistons.Q THEN 
@@ -152,7 +152,7 @@ ELSE
 			bValve 				:=	TRUE;
 	
 			(* transition *)
-			IF bEnable THEN          
+			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF  NOT bsensor THEN 

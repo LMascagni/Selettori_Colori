@@ -15,14 +15,18 @@ VAR
 	estep 	: E_Step;
 	
 	
-	slots	: INT;
+	slot	: INT;
 	nerrid	: DINT; 
 	bfbend : BOOL;
 	
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
+      <ST><![CDATA[
+
+
+(*
+stIn.bMotorImpulse 			:= stRawIn.bMotorImpulse 		;
 stIn.bPieceSensorInput 		:= stRawIn.bPieceSensorInput 	;
 stIn.bPieceSensorOutput 	:= stRawIn.bPieceSensorOutput 	;	
 stIn.bSlot1 				:= stRawIn.bSlot1 				;	
@@ -36,7 +40,7 @@ stIn.bEmerg 				:= stRawIn.bEmerg				;
 
 fbPistons(
 	bEnable		:=  TRUE, 
-	slot 		:= slots, 
+	slot 		:= 2, 
 	st_In 		:= stIn, 
 	st_Params 	:= stParams, 
 	eStep		=> estep, 
@@ -47,10 +51,11 @@ fbPistons(
 
 stRawOut :=  fbPistons.st_Out;
 
-
+*)
 	]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="208" Count="3" />
       <LineId Id="159" Count="10" />
       <LineId Id="176" Count="0" />
       <LineId Id="180" Count="4" />

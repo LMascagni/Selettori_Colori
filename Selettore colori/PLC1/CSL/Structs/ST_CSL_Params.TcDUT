@@ -3,12 +3,34 @@
   <DUT Name="ST_CSL_Params" Id="{a68baf98-494b-42fa-ab52-3ff8b223671a}">
     <Declaration><![CDATA[TYPE ST_CSL_Params :
 STRUCT
-	StepSlot1			:	INT	:= 	150;
-	StepSlot2			:	INT	:= 	160;
-	StepSlot3			:	INT	:= 	170;
-	StepNoSlot			:	INT	:=	000;
+	StepSlot1			:	INT		:= 	4;
+	StepSlot2			:	INT		:= 	10;
+	StepSlot3			:	INT		:= 	16;
 	
-	ImpulsePerRotation	:	INT	:=	123;
+	StepNoSlot			:	INT		:=	0;//da modificare
+	
+	(*Colors Voltage*)
+	RedVoltage			:	REAL	:=	5.5;
+	BlueVoltage			:	REAL	:=	7.1;
+	WhiteVoltage		:	REAL	:=	2.9;
+	
+	//threshold
+	Threshold			:	REAL	:=	0.5;
+	
+	//min values
+	RedVoltageMin		:	REAL;
+	BlueVoltageMin		:	REAL;
+	WhiteVoltageMin		:	REAL;
+	
+	//max values
+	RedVoltageMax		:	REAL;
+	BlueVoltageMax		:	REAL;
+	WhiteVoltageMax		:	REAL;
+	
+	(*Colors Slot*)
+	RedSlot				:	INT		:=	3;
+	BlueSlot			:	INT		:=	2;
+	WhiteSlot			:	INT		:=	1;
 
 	
 END_STRUCT
