@@ -46,7 +46,9 @@ stIn.bEmerg 				:= stRawIn.bEmerg				;
                                         				
 
 fbSensor(bEnable := stIn.bStart, stIn := stIn,stParams := stParams );
+
 nSlot := fbSensor.nSlot;
+
 stRawOut := fbSensor.stOut;
 
 // per la transizione: fbSensor.bFbEnd = 1]]></ST>
@@ -72,7 +74,9 @@ stRawOut := fbSensor.stOut;
       <LineId Id="142" Count="1" />
       <LineId Id="101" Count="0" />
       <LineId Id="100" Count="0" />
+      <LineId Id="190" Count="0" />
       <LineId Id="103" Count="0" />
+      <LineId Id="189" Count="0" />
       <LineId Id="105" Count="0" />
       <LineId Id="162" Count="0" />
       <LineId Id="147" Count="0" />

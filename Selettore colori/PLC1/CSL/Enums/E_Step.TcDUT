@@ -5,16 +5,24 @@
 {attribute 'strict'}
 TYPE E_Step :
 (
+	
+	(* special steps *)
 	NoStep		:=	-32767,
 	Unknown		:=	-32000,
 	
+	(* Not Enabled or Errors*)
 	NeOrError	:=	-990,
 	
+	(* Stop *)
 	Stop		:=	0,
 	
-	Start		:= 100,
-	Measuring	:= 110,
-	Processing	:= 120,
+	(* CSL's steps *)
+	Start		:= 	100,
+	Measuring	:= 	110,
+	Processing	:= 	120,
+	conveyor	:= 	130,
+	waiting		:= 	140,
+	piston		:= 	150,
 	
 	Stopping	:=	900
 );
