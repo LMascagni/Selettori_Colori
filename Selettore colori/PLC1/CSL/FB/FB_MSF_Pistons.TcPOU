@@ -29,8 +29,11 @@ VAR_OUTPUT
 	
 	END_VAR
 VAR
-	bSensor: BOOL;
-	bValve : BOOL;
+	bSensor		: BOOL;
+	bValve 		: BOOL;
+	
+	pValve		:	POINTER TO BOOL;
+	
 	nStepSlot : INT;
 	Timer_Pistons : TON();
 	Error: DINT;
@@ -61,15 +64,15 @@ IF NOT bInitialized THEN
 		0:
 			nStepSlot	:=	st_Params.StepNoSlot;	
 		1:
-			bValve		:= 	st_Out.bValveSlot1;
+			pValve		:= 	ADR(st_Out.bValveSlot1);
 			bSensor 	:= 	st_In.bSlot1;
 			nStepSlot 	:= 	st_Params.StepSlot1;
 		2:
-			bValve		:= 	st_Out.bValveSlot2;
+			pValve		:= 	ADR(st_Out.bValveSlot2);
 			bSensor 	:= 	st_In.bSlot2;
 			nStepSlot 	:= 	st_Params.StepSlot2;
 		3:
-			bValve		:= 	st_Out.bValveSlot3;
+			pValve		:= 	ADR(st_Out.bValveSlot3);
 			bSensor 	:= 	st_In.bSlot3;
 			nStepSlot 	:= 	st_Params.StepSlot3;
 			
@@ -148,7 +151,6 @@ ELSE
 	
 		// activation of the motors of the pistons.
 		E_Step.piston :
-
 			(* body *)
 			st_Out.bMotor		:= 	FALSE;
 			st_Out.bCompressor 	:= 	TRUE;
@@ -174,7 +176,11 @@ ELSE
 		
 		
 	END_CASE
-
+	IF bValve THEN
+		pValve^ := TRUE;
+	ELSE
+		pValve^ := FALSE;
+	END_IF
 
 END_IF]]></ST>
     </Implementation>
@@ -243,7 +249,8 @@ END_IF]]></ST>
       <LineId Id="352" Count="0" />
       <LineId Id="427" Count="0" />
       <LineId Id="426" Count="0" />
-      <LineId Id="403" Count="4" />
+      <LineId Id="403" Count="0" />
+      <LineId Id="405" Count="2" />
       <LineId Id="416" Count="0" />
       <LineId Id="402" Count="0" />
       <LineId Id="483" Count="0" />
@@ -256,7 +263,11 @@ END_IF]]></ST>
       <LineId Id="213" Count="0" />
       <LineId Id="484" Count="0" />
       <LineId Id="212" Count="0" />
-      <LineId Id="118" Count="8" />
+      <LineId Id="118" Count="7" />
+      <LineId Id="637" Count="0" />
+      <LineId Id="639" Count="1" />
+      <LineId Id="638" Count="0" />
+      <LineId Id="126" Count="0" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
