@@ -120,8 +120,11 @@ ELSE
 			IF NOT bEnable THEN          
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
-				IF  iMotor = nStepSlot THEN 
-					eNewstep := E_Step.waiting;            
+				IF  iMotor = nStepSlot AND nStepSlot <> st_Params.StepNoSlot THEN 
+					eNewstep := E_Step.waiting;
+				ELSIF iMotor = nStepSlot AND nStepSlot = st_Params.StepNoSlot THEN
+					bFbEnd	:= TRUE;
+					bInitialized := FALSE;
         		END_IF;
 			END_IF
 	
@@ -156,8 +159,9 @@ ELSE
 		 		eNewstep := E_Step.NeOrError;        
 			ELSE 
 				IF  NOT bsensor THEN 
-					bFbEnd	:= TRUE;         
-       	 			END_IF;
+					bFbEnd	:= TRUE;
+					bInitialized := FALSE;     
+       	 		END_IF;
 			END_IF
 	
 	
@@ -227,6 +231,7 @@ END_IF]]></ST>
       <LineId Id="376" Count="1" />
       <LineId Id="383" Count="0" />
       <LineId Id="379" Count="0" />
+      <LineId Id="585" Count="2" />
       <LineId Id="381" Count="0" />
       <LineId Id="384" Count="0" />
       <LineId Id="435" Count="0" />
@@ -245,6 +250,7 @@ END_IF]]></ST>
       <LineId Id="429" Count="1" />
       <LineId Id="420" Count="0" />
       <LineId Id="418" Count="1" />
+      <LineId Id="588" Count="0" />
       <LineId Id="353" Count="1" />
       <LineId Id="348" Count="0" />
       <LineId Id="213" Count="0" />
